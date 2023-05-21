@@ -19,3 +19,13 @@
       (_map mapFn (rest list)))
     )
   )
+
+(defn reverse-list [list]
+  (if (empty? list)
+    list
+    (cons
+      (last list)
+      (reverse-list (butlast list))
+      )
+    )
+  )
