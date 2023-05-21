@@ -8,3 +8,10 @@
     (is (is-palindrome "a"))
     (is (is-palindrome "aa"))
     (is (not (is-palindrome "ab")))))
+
+(deftest test-my-map
+  (testing "Function application over a collection"
+    (is (= (_map inc [1 2 3]) [2 3 4]))
+    (is (= (_map #(* % %) [1 2 3]) [1 4 9]))
+    (is (= (_map str ["Hello, " "World!"]) ["Hello, " "World!"]))
+    (is (= (_map char []) []))))

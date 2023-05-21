@@ -10,3 +10,12 @@
       (is-palindrome (subs str 1 (dec (count str)))))
     )
   )
+
+(defn _map [mapFn list]
+  (if (empty? list)
+    list
+    (cons
+      (mapFn (first list))
+      (_map mapFn (rest list)))
+    )
+  )
