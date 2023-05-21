@@ -15,3 +15,11 @@
     (is (= (_map #(* % %) [1 2 3]) [1 4 9]))
     (is (= (_map str ["Hello, " "World!"]) ["Hello, " "World!"]))
     (is (= (_map char []) []))))
+
+(deftest test-reverse-list
+  (testing "List reversal"
+    (is (= (reverse-list [1 2 3]) [3 2 1]))
+    (is (= (reverse-list ["a" "b" "c"]) ["c" "b" "a"]))
+    (is (= (reverse-list []) []))
+    (is (= (reverse-list [1]) [1]))
+    (is (= (reverse-list [[1 2] [3 4] [5 6]]) [[5 6] [3 4] [1 2]]))))
