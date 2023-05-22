@@ -33,8 +33,9 @@
     (zero? n) [0]
     (= n 1) [0 1]
     :else
-    (conj
-      (fibonacci (dec n))
-      (+
-        (last (fibonacci (dec n)))
-        (last (fibonacci (- n 2)))))))
+    (let [fibo-1 (fibonacci (dec n))]
+      (conj
+        fibo-1
+        (+
+          (last fibo-1)
+          (last (butlast fibo-1)))))))
