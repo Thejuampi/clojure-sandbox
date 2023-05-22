@@ -36,3 +36,23 @@
     (testing "Negative input"
       (is (thrown? IllegalArgumentException (fibonacci -1)))
       (is (thrown? IllegalArgumentException (fibonacci -5))))))
+
+(deftest test-factorial
+  (testing "Factorial calculation"
+    (is (= (factorial 0) 1))
+    (is (= (factorial 1) 1))
+    (is (= (factorial 5) 120))
+    (is (= (factorial 10) 3628800))
+    (is (= (factorial 12) 479001600)))
+
+  (testing "Factorial-recursive calculation"
+    (is (= (factorial-recursive 0) 1))
+    (is (= (factorial-recursive 1) 1))
+    (is (= (factorial-recursive 5) 120))
+    (is (= (factorial-recursive 10) 3628800))
+    (is (= (factorial-recursive 12) 479001600)))
+
+  (testing "Equality of results"
+    (is (= (factorial 7) (factorial-recursive 7)))
+    (is (= (factorial 9) (factorial-recursive 9)))
+    (is (= (factorial 11) (factorial-recursive 11)))))
