@@ -66,9 +66,9 @@
 
 
 (defn factorial-reduce [n]
-  (cond
+  (if
     (neg? n) (throw (IllegalArgumentException. (str n)))
-    :else (reduce * (range 1 (inc n)))))
+    (reduce * (range 1 (inc n)))))
 
 
 
