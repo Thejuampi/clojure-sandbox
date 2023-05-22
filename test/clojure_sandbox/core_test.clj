@@ -52,7 +52,11 @@
     (is (= (factorial-recursive 10) 3628800))
     (is (= (factorial-recursive 12) 479001600)))
 
+  (testing "Negative input"
+    (is (thrown? IllegalArgumentException (factorial -1)))
+    (is (thrown? IllegalArgumentException (factorial-recursive -5)))))
+
   (testing "Equality of results"
     (is (= (factorial 7) (factorial-recursive 7)))
     (is (= (factorial 9) (factorial-recursive 9)))
-    (is (= (factorial 11) (factorial-recursive 11)))))
+    (is (= (factorial 11) (factorial-recursive 11))))

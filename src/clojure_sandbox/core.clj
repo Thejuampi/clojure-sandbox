@@ -41,3 +41,23 @@
         (+
           (last fibo-1)
           (last (butlast fibo-1)))))))
+
+
+
+(defn factorial-recursive [n]
+  (cond
+    (neg? n) (throw (IllegalArgumentException. (str n)))
+    (zero? n) 1
+    (= 1 n) 1
+    :else (* n (factorial-recursive (dec n)))))
+
+
+
+(defn factorial [n]
+  (cond
+    (neg? n) (throw (IllegalArgumentException. (str n)))
+    (zero? n) 1
+    :else (let [result (atom 1)]
+            (dorun (for [i (range 1 (inc n))]
+                     (swap! result #(* i %))))
+            @result)))
