@@ -26,3 +26,15 @@
     (cons
       (last list)
       (reverse-list (butlast list)))))
+
+(defn fibonacci [n]
+  (cond
+    (neg? n) (throw (IllegalArgumentException. (str n)))
+    (zero? n) [0]
+    (= n 1) [0 1]
+    :else
+    (conj
+      (fibonacci (dec n))
+      (+
+        (last (fibonacci (dec n)))
+        (last (fibonacci (- n 2)))))))

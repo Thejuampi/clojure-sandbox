@@ -24,12 +24,15 @@
     (is (= (reverse-list [1]) [1]))
     (is (= (reverse-list [[1 2] [3 4] [5 6]]) [[5 6] [3 4] [1 2]]))))
 
-
 (deftest test-fibonacci
   (testing "Fibonacci sequence generation"
-    (is (= (fibonacci 1) [0]))
-    (is (= (fibonacci 2) [0 1]))
-    (is (= (fibonacci 3) [0 1 1]))
-    (is (= (fibonacci 6) [0 1 1 2 3 5]))
-    (is (= (fibonacci 10) [0 1 1 2 3 5 8 13 21 34]))
-    (is (= (fibonacci 0) []))))
+    (is (= (fibonacci 0) [0]))
+    (is (= (fibonacci 1) [0 1]))
+    (is (= (fibonacci 2) [0 1 1]))
+    (is (= (fibonacci 3) [0 1 1 2]))
+    (is (= (fibonacci 6) [0 1 1 2 3 5 8]))
+    (is (= (fibonacci 10) [0 1 1 2 3 5 8 13 21 34 55]))
+
+    (testing "Negative input"
+      (is (thrown? IllegalArgumentException (fibonacci -1)))
+      (is (thrown? IllegalArgumentException (fibonacci -5))))))
