@@ -53,11 +53,23 @@
 
 
 
-(defn factorial [n]
+(defn factorial-for [n]
   (cond
     (neg? n) (throw (IllegalArgumentException. (str n)))
     (zero? n) 1
     :else (let [result (atom 1)]
-            (dorun (for [i (range 1 (inc n))]
-                     (swap! result #(* i %))))
+            (dorun
+              (for [i (range 1 (inc n))]
+                (swap! result #(* i %))))
             @result)))
+
+
+
+(defn factorial-reduce [n]
+  (cond
+    (neg? n) (throw (IllegalArgumentException. (str n)))
+    :else (reduce * (range 1 (inc n)))))
+
+
+
+(defn factorial [n] (factorial-reduce n))
