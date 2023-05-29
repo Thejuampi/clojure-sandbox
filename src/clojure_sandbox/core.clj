@@ -68,8 +68,35 @@
 (defn factorial-reduce [n]
   (if
     (neg? n) (throw (IllegalArgumentException. (str n)))
-    (reduce * (range 1 (inc n)))))
+             (reduce * (range 1 (inc n)))))
 
 
 
 (defn factorial [n] (factorial-reduce n))
+
+
+(defn not-empty? [str]
+  (pos? (count str)))
+
+(def validations
+  {:name {:fn not-empty? :err "value is empty"}})
+
+
+(defn validate-form [form]
+  {:name {
+          :val (-> form :name :val)
+          :err (if (empty? (-> form :name :val)) "name is empty" nil)}})
+
+
+(defn validate [fn x err]
+  (if (fn x)
+    nil
+    err))
+
+
+(defn validate-form-2 [form validations]
+  {:name (let [value (get-in form [:name :val])
+               error (get-in validations [:name :err])
+               validation-result (validate (get-in validations [:name :fn]) value error)]
+           {:val value
+            :err validation-result})})
